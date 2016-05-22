@@ -1,0 +1,47 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dialogue.Portable", "Dialogue.Portable\Dialogue.Portable.csproj", "{F252916D-A72E-49AA-BBFE-A1B96EBC2432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dialogue.Client", "Dialogue.Client\Dialogue.Client.csproj", "{DFF5CDA5-0940-4B18-A93A-6BC7970A6E56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dialogue.Server", "Dialogue.Server\Dialogue.Server.csproj", "{9608A45B-8C1A-498C-BFF9-AFA4CBD2AFC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D5090079-9CC9-4281-A1FF-4516ADAB13AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dialogue.Sample.Client.Console", "Samples\Dialogue.Sample.Client.Console\Dialogue.Sample.Client.Console.csproj", "{48FBA70A-70A5-40A9-A16D-2CFB6CF2753F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dialogue.Sample.Server.Console", "Samples\Dialogue.Sample.Server.Console\Dialogue.Sample.Server.Console.csproj", "{0CC99F0C-1B2C-464E-B380-0AF23932329C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F252916D-A72E-49AA-BBFE-A1B96EBC2432}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F252916D-A72E-49AA-BBFE-A1B96EBC2432}.Debug|x86.Build.0 = Debug|Any CPU
+		{F252916D-A72E-49AA-BBFE-A1B96EBC2432}.Release|x86.ActiveCfg = Release|Any CPU
+		{F252916D-A72E-49AA-BBFE-A1B96EBC2432}.Release|x86.Build.0 = Release|Any CPU
+		{DFF5CDA5-0940-4B18-A93A-6BC7970A6E56}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DFF5CDA5-0940-4B18-A93A-6BC7970A6E56}.Debug|x86.Build.0 = Debug|Any CPU
+		{DFF5CDA5-0940-4B18-A93A-6BC7970A6E56}.Release|x86.ActiveCfg = Release|Any CPU
+		{DFF5CDA5-0940-4B18-A93A-6BC7970A6E56}.Release|x86.Build.0 = Release|Any CPU
+		{9608A45B-8C1A-498C-BFF9-AFA4CBD2AFC2}.Debug|x86.ActiveCfg = Debug|x86
+		{9608A45B-8C1A-498C-BFF9-AFA4CBD2AFC2}.Debug|x86.Build.0 = Debug|x86
+		{9608A45B-8C1A-498C-BFF9-AFA4CBD2AFC2}.Release|x86.ActiveCfg = Release|x86
+		{9608A45B-8C1A-498C-BFF9-AFA4CBD2AFC2}.Release|x86.Build.0 = Release|x86
+		{48FBA70A-70A5-40A9-A16D-2CFB6CF2753F}.Debug|x86.ActiveCfg = Debug|x86
+		{48FBA70A-70A5-40A9-A16D-2CFB6CF2753F}.Debug|x86.Build.0 = Debug|x86
+		{48FBA70A-70A5-40A9-A16D-2CFB6CF2753F}.Release|x86.ActiveCfg = Release|x86
+		{48FBA70A-70A5-40A9-A16D-2CFB6CF2753F}.Release|x86.Build.0 = Release|x86
+		{0CC99F0C-1B2C-464E-B380-0AF23932329C}.Debug|x86.ActiveCfg = Debug|x86
+		{0CC99F0C-1B2C-464E-B380-0AF23932329C}.Debug|x86.Build.0 = Debug|x86
+		{0CC99F0C-1B2C-464E-B380-0AF23932329C}.Release|x86.ActiveCfg = Release|x86
+		{0CC99F0C-1B2C-464E-B380-0AF23932329C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48FBA70A-70A5-40A9-A16D-2CFB6CF2753F} = {D5090079-9CC9-4281-A1FF-4516ADAB13AE}
+		{0CC99F0C-1B2C-464E-B380-0AF23932329C} = {D5090079-9CC9-4281-A1FF-4516ADAB13AE}
+	EndGlobalSection
+EndGlobal
