@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Dialogue.Portable
 {
-	public class EntityBase : IEntity
+	public abstract class EntityBase : IEntity
 	{
 		public EntityBase()
 		{

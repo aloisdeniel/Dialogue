@@ -6,7 +6,7 @@ namespace Dialogue.Sample.Client.Console
 	{
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+            
 		}
 	}
 }
