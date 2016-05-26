@@ -14,6 +14,8 @@ namespace Dialogue.Server
 		{
 		}
 
+        public const int DefaultLimit = 40;
+
         private List<Type> registeredEntities = new List<Type>();
 
         public IEnumerable<Type> GetRegisteredEntities()
@@ -35,7 +37,7 @@ namespace Dialogue.Server
                 var repository = this.CreateRepository<TEntity>();
                 
                 var skip = (int?)this.Request.Query.skip ?? 0;
-                var take = (int?)this.Request.Query.take ?? 2;
+                var take = (int?)this.Request.Query.take ?? DefaultLimit;
 
                 var entities = await repository.ReadAll(skip,take);
                 return Response.AsJson(entities);

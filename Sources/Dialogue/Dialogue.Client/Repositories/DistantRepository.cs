@@ -13,6 +13,8 @@ namespace Dialogue.Client.Repositories
 {
     public class DistantRepository<TEntity> : IRepository<TEntity> where TEntity : class,IEntity
     {
+        public struct Void { }
+
         public DistantRepository(ServiceClient client)
         {
             this.client = client;
@@ -100,12 +102,19 @@ namespace Dialogue.Client.Repositories
 			if (body != null)
 			{
 				message.Content = body;
-			}
+                message.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            }
 
 			var resp = await this.client.Client.SendAsync(message);
-			var content = await resp.Content.ReadAsStringAsync();
 
-			return this.Deserialize<T>(content);
+            if(typeof(T) != typeof(Void))
+            {
+                var content = await resp.Content.ReadAsStringAsync();
+                return this.Deserialize<T>(content);
+            }
+
+            return default(T);
+
 		}
 
 		private Task<T> SendAsync<T,TBody>(string url, HttpMethod method, TBody body)
@@ -120,31 +129,39 @@ namespace Dialogue.Client.Repositories
         public Task<int> Create(TEntity entity)
         {
 			var rootPath = Mapper.Current.CreateRootPath<TEntity>();
+
+            rootPath = this.client.Host + rootPath;
+
 			return this.SendAsync<int, TEntity>(rootPath, HttpMethod.Post, entity);
         }
 
         public Task Delete(int id)
         {
 			var entityPath = Mapper.Current.CreateEntityPath<TEntity>(id);
-			return this.SendAsync<TEntity>(entityPath, HttpMethod.Delete, null);
+            entityPath = this.client.Host + entityPath;
+            return this.SendAsync<Void>(entityPath, HttpMethod.Delete, null);
         }
 
         public Task<TEntity> Read(int id)
         {
 			var entityPath = Mapper.Current.CreateEntityPath<TEntity>(id);
-			return this.SendMergedAsync<TEntity>(entityPath, HttpMethod.Get, null);
+            entityPath = this.client.Host + entityPath;
+            return this.SendMergedAsync<TEntity>(entityPath, HttpMethod.Get, null);
         }
 
         public Task Update(TEntity entity)
         {
 			var entityPath = Mapper.Current.CreateEntityPath<TEntity>(entity.Id);
-			return this.SendAsync<TEntity,TEntity>(entityPath, HttpMethod.Post, entity);
+            entityPath = this.client.Host + entityPath;
+            return this.SendAsync<Void,TEntity>(entityPath, HttpMethod.Post, entity);
         }
 
         public Task<ResultsPage<TEntity>> ReadAll(int offset, int limit)
         {
 			var rootPath = Mapper.Current.CreateRootPath<TEntity>();
-			return this.SendMergedAsync<ResultsPage<TEntity>>(rootPath, HttpMethod.Get, null);
+
+            rootPath = this.client.Host + rootPath;
+            return this.SendMergedAsync<ResultsPage<TEntity>>(rootPath, HttpMethod.Get, null);
         }
 
         public async Task<int> Count()

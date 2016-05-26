@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Dialogue.Portable.Repositories;
+using Dialogue.Portable;
 
 namespace Dialogue.Client
 {

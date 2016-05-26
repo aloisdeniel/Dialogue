@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,6 +34,20 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Dialogue.Client\Dialogue.Client.csproj">
+      <Project>{dff5cda5-0940-4b18-a93a-6bc7970a6e56}</Project>
+      <Name>Dialogue.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dialogue.Portable\Dialogue.Portable.csproj">
+      <Project>{f252916d-a72e-49aa-bbfe-a1b96ebc2432}</Project>
+      <Name>Dialogue.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dialogue.Sample\Dialogue.Sample.csproj">
+      <Project>{a7710d02-6ebd-4970-9aa9-4c453c5a9d15}</Project>
+      <Name>Dialogue.Sample</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

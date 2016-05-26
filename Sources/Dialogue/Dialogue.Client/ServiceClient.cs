@@ -10,11 +10,14 @@ namespace Dialogue.Client
 {
 	public class ServiceClient : IService
 	{
-		public ServiceClient()
+		public ServiceClient(string host)
 		{
             this.Client = new HttpClient();
 			this.MergeRequests = true;
-		}
+            this.Host = host;
+        }
+
+        public string Host { get; set; }
 
         public HttpClient Client { get; set; }
 
