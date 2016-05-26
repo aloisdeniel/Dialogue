@@ -1,4 +1,5 @@
 ﻿using Dialogue.Portable;
+using Dialogue.Portable.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,35 +8,34 @@ using System.Threading.Tasks;
 
 namespace Dialogue
 {
-    public class MemoryRepository<T> : IRepository<T> where T : IEntity
+    public class MemoryRepository<T> : IRepository<T> where T : class,IEntity
     {
-        private readonly Dictionary<Guid, T> entities = new Dictionary<Guid, T>();
+        private static int lastIndex = 0;
+        private static readonly Dictionary<int, T> entities = new Dictionary<int, T>();
 
         public MemoryRepository()
         {
 
         }
 
-        private void Verify(Guid id)
+        private void Verify(int id)
         {
-            if (id == null || !this.entities.ContainsKey(id))
+            if (!entities.ContainsKey(id))
                 throw new ArgumentException("Identifier not found");
         }
 
-        public Task<Guid> Create(T entity)
+        public Task<int> Create(T entity)
         {
-            var guid = Guid.NewGuid();
-
-            entity.Identifier = guid;
+            entity.Id = lastIndex++;
             entity.CreatedAt = DateTime.Now;
             entity.ModifiedAt = entity.CreatedAt;
 
-            entities[guid] = entity;
+            entities[entity.Id] = entity;
 
-            return Task.FromResult(guid);
+            return Task.FromResult(entity.Id);
         }
 
-        public Task Delete(Guid id)
+        public Task Delete(int id)
         {
             this.Verify(id);
 
@@ -44,26 +44,40 @@ namespace Dialogue
             return Task.FromResult(true);
         }
 
-        public Task<T> Read(Guid id)
+        public Task<T> Read(int id)
         {
             this.Verify(id);
 
             return Task.FromResult(entities[id]);
         }
 
-        public Task<IEnumerable<T>> ReadAll()
+        public Task<ResultsPage<T>> ReadAll(int skip, int take)
         {
-            return Task.FromResult<IEnumerable<T>>(entities.Values);
+            var set = entities.Values.OrderBy((a) => a.Id).Skip(skip).Take(take);
+            var total = entities.Count;
+            var next = skip + take;
+
+            return Task.FromResult(new ResultsPage<T>
+            {
+                Items = set,
+                Total = total,
+                Next = (next < total) ? (int?)next : null,
+            });
         }
 
         public Task Update(T entity)
         {
-            this.Verify(entity.Identifier);
+            this.Verify(entity.Id);
 
-            entities[entity.Identifier] = entity;
+            entities[entity.Id] = entity;
             entity.ModifiedAt = DateTime.Now;
 
             return Task.FromResult(true);
+        }
+
+        public Task<int> Count()
+        {
+            return Task.FromResult(entities.Count);
         }
     }
 }

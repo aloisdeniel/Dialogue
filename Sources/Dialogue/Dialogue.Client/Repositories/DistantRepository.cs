@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dialogue.Portable.Repositories;
 
 namespace Dialogue.Client.Repositories
 {
-    public class DistantRepository<T> : IRepository<T> where T : IEntity
+    public class DistantRepository<T> : IRepository<T> where T : class,IEntity
     {
         public DistantRepository(ServiceClient client)
         {
@@ -16,17 +17,17 @@ namespace Dialogue.Client.Repositories
 
         private ServiceClient client;
 
-        public Task<Guid> Create(T entity)
+        public Task<int> Create(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task Delete(Guid id)
+        public Task Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> Read(Guid id)
+        public Task<T> Read(int id)
         {
             throw new NotImplementedException();
         }
@@ -37,6 +38,16 @@ namespace Dialogue.Client.Repositories
         }
 
         public Task Update(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ResultsPage<T>> ReadAll(int offset, int limit)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> Count()
         {
             throw new NotImplementedException();
         }

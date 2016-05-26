@@ -12,7 +12,7 @@ namespace Dialogue.Portable
 			get; set;
 		}
 
-		public Guid Identifier
+		public int Id
 		{
 			get; set;
 		}

@@ -1,4 +1,5 @@
 ﻿using Dialogue.Server;
+using Dialogue.Server.Repositories;
 using Nancy.Hosting.Self;
 using System;
 
@@ -16,7 +17,8 @@ namespace Dialogue.Sample.Server
 
             protected override IRepository<TEntity> CreateRepository<TEntity>()
             {
-                return new MemoryRepository<TEntity>();
+                //return new MemoryRepository<TEntity>();
+                return new EFRepository<TEntity>(this.GetRegisteredEntities());
             }
         }
 

@@ -1,22 +1,25 @@
 ﻿using Dialogue.Portable;
+using Dialogue.Portable.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dialogue.Server
+namespace Dialogue
 {
-    public interface IRepository<T> where T : IEntity
+    public interface IRepository<T> where T : class,IEntity
     {
-        Task<IEnumerable<T>> ReadAll();
+        Task<ResultsPage<T>> ReadAll(int offset, int limit);
 
-        Task<T> Read(Guid id);
+        Task<T> Read(int id);
 
-        Task<Guid> Create(T entity);
+        Task<int> Create(T entity);
 
         Task Update(T entity);
 
-        Task Delete(Guid id);
+        Task Delete(int id);
+
+        Task<int> Count();
     }
 }

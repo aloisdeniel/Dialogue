@@ -32,11 +32,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\MemoryRepository.cs" />
+    <Compile Include="Repositories\EFRepository.cs" />
     <Compile Include="ServiceServer.cs" />
     <Compile Include="DialogueBootstrapper.cs" />
-    <Compile Include="ServerDbContext.cs" />
+    <Compile Include="Repositories\ServerDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

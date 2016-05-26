@@ -38,6 +38,10 @@
     <Compile Include="IEntity.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="CustomJsonSerializer.cs" />
+    <Compile Include="QueryParser.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\MemoryRepository.cs" />
+    <Compile Include="Repositories\ResultsPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Humanizer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">

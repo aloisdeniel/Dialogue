@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Dialogue.Portable
 {
 	public interface IService
 	{
-		void Register<TEntity>() where TEntity : IEntity;
+        IEnumerable<Type> GetRegisteredEntities();
+
+
+        void Register<TEntity>() where TEntity : class,IEntity;
 	}
 }
 

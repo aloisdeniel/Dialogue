@@ -3,7 +3,7 @@ namespace Dialogue.Portable
 {
 	public interface IEntity
 	{
-		Guid Identifier { get; set; }
+		int Id { get; set; }
 
 		DateTime CreatedAt { get; set; }
 

@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace Dialogue.Server
+namespace Dialogue.Server.Repositories
 {
 	public class ServerDbContext : DbContext
 	{
 
-		public ServerDbContext() : base("ServerDbContext")
+		public ServerDbContext(IEnumerable<Type> allEntities) : base("DialogueDatabase")
 		{
+            this.allEntities = allEntities;
 		}
-
-		private List<Type> sets = new List<Type>();
-
-		public void Register(Type entityType)
-		{
-			sets.Add(entityType);
-		}
+        
+        private IEnumerable<Type> allEntities;
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			foreach (var entityType in sets)
+			foreach (var entityType in allEntities)
 			{
 				var method = modelBuilder.GetType().GetMethod("Entity");
 				method = method.MakeGenericMethod(new Type[] { entityType });
