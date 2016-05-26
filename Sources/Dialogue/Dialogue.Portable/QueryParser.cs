@@ -13,10 +13,10 @@ namespace Dialogue.Portable
         {
             public const string And = "{0}and{1}";
             public const string Or = "{0}or{1}";
-            public const string Not = "not{0}";
         }
         public static class Expressions
         {
+			public const string Not = "[not{0}]";
             public const string Value = "[@{0}]";
             public const string GreaterThan = "[@{0}>{1}]";
             public const string LowerThan = "[@{0}<{1}]";
@@ -27,7 +27,7 @@ namespace Dialogue.Portable
 
         public Expression<Func<T,bool>> Parse<T>(string query)
         {
-
+			throw new NotImplementedException();
         }
     }
 }

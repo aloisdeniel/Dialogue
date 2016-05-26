@@ -10,6 +10,7 @@ namespace Dialogue.Portable
 		{
 			this.ContractResolver = new CamelCasePropertyNamesContractResolver();
 			this.Formatting = Formatting.Indented;
+
 		}
 	}
 }

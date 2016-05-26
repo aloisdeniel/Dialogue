@@ -63,5 +63,11 @@ namespace Dialogue.Portable
             var rootPath = this.CreateRootPath<TEntity>();
             return $"{rootPath}/{{id:int}}";
         }
+
+		public virtual string CreateEntityPath<TEntity>(int id)
+		{
+			var path = this.CreateEntityPath<TEntity>();
+			return path.Replace("{id:int}",id.ToString());
+		}
     }
 }
