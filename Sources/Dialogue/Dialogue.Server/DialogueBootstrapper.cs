@@ -4,6 +4,7 @@ using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using Newtonsoft.Json;
+using Dialogue.Server.Auth;
 
 namespace Dialogue.Server
 {
@@ -15,7 +16,7 @@ namespace Dialogue.Server
         
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            this.RegisterModules(container, new ModuleRegistration[] { new ModuleRegistration(typeof(TService)) });
+            this.RegisterModules(container, new ModuleRegistration[] { new ModuleRegistration(typeof(TService)), new ModuleRegistration(typeof(AuthModule)) });
 
             base.ApplicationStartup(container, pipelines);
         }

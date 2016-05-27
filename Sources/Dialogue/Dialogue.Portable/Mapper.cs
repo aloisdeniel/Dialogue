@@ -69,5 +69,10 @@ namespace Dialogue.Portable
 			var path = this.CreateEntityPath<TEntity>();
 			return path.Replace("{id:int}",id.ToString());
 		}
+        
+        public virtual string AuthLoginPath
+        {
+            get { return $"{BasePath}/auth/login"; }
+        }
     }
 }

@@ -29,7 +29,12 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Portable.DataAnnotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Portable.DataAnnotations.1.0.0\lib\net45\Portable.DataAnnotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -48,6 +53,10 @@
       <Project>{a7710d02-6ebd-4970-9aa9-4c453c5a9d15}</Project>
       <Name>Dialogue.Sample</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

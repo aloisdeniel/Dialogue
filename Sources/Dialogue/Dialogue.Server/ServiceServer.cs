@@ -5,14 +5,23 @@ using Nancy;
 using System.Collections.Generic;
 using Nancy.ModelBinding;
 using System.Linq;
+using Nancy.Authentication.Stateless;
+using Dialogue.Server.Auth;
+using System.Net;
+using Nancy.Security;
 
 namespace Dialogue.Server
 {
 	public abstract class ServiceServer : NancyModule, IService
 	{
+
 		public ServiceServer() : base()
 		{
-		}
+            var configuration = new StatelessAuthenticationConfiguration(AuthModule.GetUserIdentity);
+
+            StatelessAuthentication.Enable(this, configuration);
+
+        }
 
         public const int DefaultLimit = 40;
 
@@ -34,6 +43,8 @@ namespace Dialogue.Server
             
             this.Get[rootPath, true] = async (p, ct) =>
             {
+                this.RequiresAuthentication();
+
                 var repository = this.CreateRepository<TEntity>();
                 
                 var skip = (int?)this.Request.Query.skip ?? 0;
@@ -45,6 +56,8 @@ namespace Dialogue.Server
 
             this.Get[entityPath, true] = async (p, ct) =>
             {
+                this.RequiresAuthentication();
+
                 var repository = this.CreateRepository<TEntity>();
 
                 var entity = await repository.Read((int)p.id);
@@ -53,6 +66,8 @@ namespace Dialogue.Server
 
             this.Post[entityPath, true] = async (p, ct) =>
             {
+                this.RequiresAuthentication();
+
                 var repository = this.CreateRepository<TEntity>();
 
                 var entity = this.Bind<TEntity>();
@@ -67,6 +82,8 @@ namespace Dialogue.Server
 
             this.Post[rootPath, true] = async (p, ct) =>
             {
+                this.RequiresAuthentication();
+
                 var repository = this.CreateRepository<TEntity>();
 
                 var entity = this.Bind<TEntity>();
@@ -81,6 +98,8 @@ namespace Dialogue.Server
 
             this.Delete[entityPath, true] = async (p, ct) =>
             {
+                this.RequiresAuthentication();
+
                 var repository = this.CreateRepository<TEntity>();
                 await repository.Delete((int)p.id);
                 return Response.AsJson(true);
